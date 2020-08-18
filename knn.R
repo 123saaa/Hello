@@ -4,6 +4,7 @@ load(file = "/Users/wangyunxuan/Downloads/caddata (1).RData")
 df1 <- as.data.frame(lapply(cad.df, function(x) if(is.numeric(x)){
   scale(x, center=TRUE, scale=TRUE)
 } else x))
+  mknn
 n<-nrow(df1)
 set.seed(123)
 test.idx <- sample(1:n, size = floor(n*0.5))
