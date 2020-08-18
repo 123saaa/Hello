@@ -15,3 +15,4 @@ pred <- lda.model$Cath
 tb<-table(pred,df1[test.idx,])
 table(pred = lda.pred,true = df1[test.idx,]$Cath)
 mean(lda.pred== df1[test.idx,]$Cath)
+jj
