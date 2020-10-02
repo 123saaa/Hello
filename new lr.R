@@ -2,8 +2,8 @@ library(caret)
 library(rsample)
 library(glmnet) 
 rm(list=ls())
-load(file = "caddata.RData")
-load(file = "Featuresselected.RData")
+load(file = "/Users/wangyunxuan/Downloads/caddata (3).RData")
+#load(file = "Featuresselected.RData")
 df <- as.data.frame(lapply(cad.df.balanced, function(x) if(is.factor(x)){
   as.numeric(x)-1
 } else x))
@@ -11,14 +11,9 @@ df$Cath <- as.factor(df$Cath)
 
 
 set.seed(123)
-split<-initial_split(df ,prop = .8)
-train <- training(split)
-test  <- testing(split)
 
-rcontrol <- rfeControl(functions = lrFuncs,method="cv")
-result<-rfe(Cath ~., data = train,sizes = c(1:54),rfeControl =rcontrol)
-train <- train[,c(predictors(lr.features),"Cath")]
-test  <- test[,c(predictors(lr.features),"Cath")]
+train <- train.df[,c(predictors(lr.features),"Cath")]
+test  <- test.df[,c(predictors(lr.features),"Cath")]
 
 
 control <- trainControl(method="repeatedcv", number=10)
@@ -43,14 +38,4 @@ pred=predict(train_model,test)
 #train_model3<-train(Cath ~., data = train, method="glm", family = "binomial" ,trControl=control)
 #pred4=predict(train_model3,test) #-----low accuracy 
 
-
-
 mean(pred== test$Cath)
-
-
-
-
-
-
-
-

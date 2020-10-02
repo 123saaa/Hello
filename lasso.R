@@ -46,11 +46,3 @@ pred=predict(train_model,test)
 
 
 mean(pred== test$Cath)
-
-
-
-
-
-
-
-
