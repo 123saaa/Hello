@@ -6,8 +6,8 @@ r <- plumb(function(){
   plumber::forward()
 }
 
-calculate_prediction <- function(Age, BMI) {
-  input_data_num <<- data.frame(Age, BMI,
+calculate_prediction <- function(Age, BMI) { #...
+  input_data_num <<- data.frame(Age, BMI,#...
                                 stringsAsFactors = FALSE)
   input_data_num <<- as.data.frame(t(sapply(input_data_num, as.numeric)))
   input_data_int <<- data.frame(Age, BM,
